@@ -1,0 +1,4 @@
+# Don't include the build directory in the docker image
+*/build*
+build?
+build*/
