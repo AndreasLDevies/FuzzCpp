@@ -9,13 +9,17 @@ FROM mcr.microsoft.com/devcontainers/cpp:debian-11
 LABEL description="Container to run the FuzzCpp project on a Linux system, which is a requirement for Google FuzzTest"
 
 # Update and install dependencies
-RUN apt-get update && apt-get install -y \
+RUN apt-get update && apt-get install --no-install-recommends -y \
     clang \
-    cmake
+    cmake \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
 # Copy the current directory contents into the container
 RUN mkdir /fuzzcpp
-COPY . /fuzzcpp
+COPY FuzzCpp /fuzzcpp
+
+WORKDIR /fuzzcpp
 
 RUN chown -R root:root /fuzzcpp && chmod -R 777 /fuzzcpp
 
