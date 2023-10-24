@@ -25,7 +25,6 @@ To just build the docker container and build the project within the docker conta
 
 * docker build -t fuzzcpp .
 * docker run -it fuzzcpp
-* cd home/fuzzcpp
 * cmake . 
 * cmake --build . 
 
